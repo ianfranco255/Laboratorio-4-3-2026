@@ -1,0 +1,37 @@
+int[] laboratorios = new int[5];
+int alumnos = 0;
+int acu = 0;
+int max = 0;
+string input;
+bool exitosaConv; // para tryParse
+
+for (int i = 0; i < 5; i++)
+{
+    Console.WriteLine($"Ingrese la cantidad de alumnos en el laboratorio {i+1}: ");
+    input = Console.ReadLine(); // se ingresa cant alum
+    exitosaConv = int.TryParse(input, out int numero); // se verifica si el dato es int | devuelve bool e int | int numero para ingresar a VP
+
+    while (exitosaConv == false || numero < 0)  // <- Mientras conversión exitosa sea falso o numero menor a 0 hacer:
+    {
+        Console.WriteLine("Intente nuevamente...");
+        input = Console.ReadLine();
+        exitosaConv = int.TryParse(input, out numero);
+    }
+    laboratorios[i] = numero;
+    acu = acu + laboratorios[i];
+
+    if (laboratorios[i] > max)
+    {
+        max = laboratorios[i];
+    }
+
+}
+
+Console.WriteLine("La cantidad total de alumnos es: " + acu);
+Console.WriteLine("El laboratorio con mayor cantidad de alumnos es: " + max);
+int count = 1;
+foreach (int laboratorio in laboratorios)
+{
+    Console.WriteLine($"Alumnos en Laboratorio {count}: " + laboratorio);
+    count++;
+}
