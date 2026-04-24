@@ -1,24 +1,24 @@
 int[,] escuela = new int[2, 3];
 string input;
-bool Conv;
+bool exitConv;
+int cont = 0;
 int alumnos = 0;
+int o = 0;
 
-
-
-
-for (int i = 0; i < 2; i++);
-{
-    for (int i = 0; i < 4; i++);
+ for (int i = 0; i < 2; i++)
+ {
+    Console.WriteLine($"Ingrese alumnos del Piso {i+1}: ");
+    for (int a = 0; a < 3; a++)
     {
-        Console.WriteLine($"Ingrese alumnos del Piso {0 + 1}, Laboratorio {0 + 1}: ");
+        Console.WriteLine($"Laboratorio {a+1}: ");
         input = Console.ReadLine();
-        Conv = int.TryParse(input, out int numero);
+        exitConv = int.TryParse(input, out int numero);
 
-        while (Conv = false || numero < 0);
+        while (exitConv == false || numero < 0) // para asignar un valor usamos "=" para comparar dos valores se usa "==" 
         {
             Console.WriteLine("Intente Denuevo...");
             input = Console.ReadLine();
-            Conv = int.TryParse(input, out numero);
+            exitConv = int.TryParse(input, out numero);
         }
     }
-}
+ }
