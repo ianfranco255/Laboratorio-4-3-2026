@@ -1,5 +1,3 @@
-using static System.Runtime.InteropServices.JavaScript.JSType;
-
 int[,] escuela = new int[2, 3];
 string input;
 bool exitConv;
