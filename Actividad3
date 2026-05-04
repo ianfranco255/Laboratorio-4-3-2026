@@ -1,0 +1,111 @@
+using System.IO;
+int[,] escuela = new int[2, 3];
+string ?input;
+string[] largo = new string[6];
+string linea;
+bool exitConv;
+int numero = 0;
+int alumnos = 0;
+bool valido;
+
+for (int i = 0; i < 2; i++)
+{
+    Console.WriteLine($"Ingrese alumnos del Piso {i + 1}: ");
+    for (int a = 0; a < 3; a++)
+    {
+        Console.WriteLine($"Laboratorio {a + 1}: ");
+        input = Console.ReadLine();
+        exitConv = int.TryParse(input, out numero);
+
+
+        while (exitConv == false || numero < 0) 
+        {
+            Console.WriteLine("Intente Denuevo...");
+            input = Console.ReadLine();
+            exitConv = int.TryParse(input, out numero);
+        }
+        largo[((i)*3+(a))] = $"Piso: {i}, Laboratorio {a} \n Alumnos: {input}";
+        escuela[i, a] = numero;
+    }
+}
+
+
+int piso = 0; 
+int laboratorio = 0;
+
+
+valido = false;
+while (valido == false)
+{
+    Console.WriteLine("Ingrese el piso que desea buscar (0 o 1):");
+    input = Console.ReadLine();
+
+    if (int.TryParse(input, out piso))
+    {
+        if (piso >= 0)
+        {
+            if (piso < 2)
+            {
+                valido = true;
+            }
+            else
+            {
+                Console.WriteLine("Intente denuevo...");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Intente denuevo...");
+        }
+    }
+    else
+    {
+        Console.WriteLine("Intente denuevo...");
+    }
+}
+
+
+valido = false;
+while (valido == false)
+{
+    Console.WriteLine("Ingrese el laboratorio que desea buscar (0, 1 o 2):");
+    input = Console.ReadLine();
+
+    if (int.TryParse(input, out laboratorio))
+    {
+        if (laboratorio >= 0)
+        {
+            if (laboratorio < 3)
+            {
+                valido = true;
+            }
+            else
+            {
+                Console.WriteLine("Intente denuevo...");
+            }
+        }
+        else
+        {
+            Console.WriteLine("Intente denuevo...");
+        }
+    }
+    else
+    {
+        Console.WriteLine("Intente denuevo...");
+    }
+}
+
+Console.WriteLine("Cantidad de alumnos del laboratorio y piso que busco: " + escuela[piso, laboratorio]);
+
+
+int total = 0;
+
+for (int j = 0; j < 3; j++)
+{
+    total = total + escuela[0, j];
+}
+
+Console.WriteLine("Total del piso 0: " + total);
+
+File.WriteAllLines($"reporte_escuela.txt", largo);
+Console.WriteLine("Datos guardados con éxito en el disco");
