@@ -1,0 +1,35 @@
+int[,] alumnos = new int[2, 3]; 
+bool[,] tieneInternet = new bool[2, 3]; 
+bool exitConv; 
+string input; 
+bool opc;
+
+for (int i = 0; i < 3; i++)
+{
+    Console.WriteLine($"Ingrese alumnos del Piso {i + 1}: ");
+    for (int a = 0; a < 3; a++)
+    {
+        Console.WriteLine($"Laboratorio {a + 1}: ");
+        input = Console.ReadLine();
+        exitConv = int.TryParse(input, out int numero);
+
+        Console.WriteLine("Este laboratorio tiene internet?: (S/N)");
+        input = Console.ReadLine();
+
+        if (input == "S")
+        {
+            tieneInternet = true;
+        }
+        if (input == "N")
+        {
+            tieneInternet = false;
+        }
+            while (exitConv == false || numero < 0)
+            {
+                Console.WriteLine("Intente Denuevo...");
+                input = Console.ReadLine();
+                exitConv = int.TryParse(input, out numero);
+            }
+        
+    }
+}
