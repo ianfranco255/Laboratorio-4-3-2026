@@ -1,35 +1,124 @@
-int[,] alumnos = new int[2, 3]; 
-bool[,] tieneInternet = new bool[2, 3]; 
-bool exitConv; 
-string input; 
-bool opc;
+int[,] alumnos = new int[2, 3];
+bool[,] ConInternet = new bool[2, 3];
+string input;
+bool valido;
 
-for (int i = 0; i < 3; i++)
+Console.WriteLine("Desea ingresar manualmente los datos? (S/N)");
+input = Console.ReadLine();
+
+if (input == "N" || input == "n")
 {
-    Console.WriteLine($"Ingrese alumnos del Piso {i + 1}: ");
-    for (int a = 0; a < 3; a++)
+    alumnos[0, 0] = 25;
+    alumnos[0, 1] = 19;
+    alumnos[0, 2] = 23;
+    alumnos[1, 0] = 13;
+    alumnos[1, 1] = 15;
+    alumnos[1, 2] = 17;
+
+    ConInternet[0, 0] = true;
+    ConInternet[0, 1] = false;
+    ConInternet[0, 2] = true;
+    ConInternet[1, 0] = false;
+    ConInternet[1, 1] = true;
+    ConInternet[1, 2] = false;
+}
+else
+{
+    for (int i = 0; i < 2; i++)
     {
-        Console.WriteLine($"Laboratorio {a + 1}: ");
-        input = Console.ReadLine();
-        exitConv = int.TryParse(input, out int numero);
-
-        Console.WriteLine("Este laboratorio tiene internet?: (S/N)");
-        input = Console.ReadLine();
-
-        if (input == "S")
+        for (int j = 0; j < 3; j++)
         {
-            tieneInternet = true;
-        }
-        if (input == "N")
-        {
-            tieneInternet = false;
-        }
-            while (exitConv == false || numero < 0)
+            valido = false;
+
+            while (valido == false)
             {
-                Console.WriteLine("Intente Denuevo...");
+                Console.WriteLine("Ingrese la cantidad de alumnos del piso " + i + ", laboratorio " + j);
                 input = Console.ReadLine();
-                exitConv = int.TryParse(input, out numero);
+
+                if (int.TryParse(input, out alumnos[i, j]))
+                {
+                    if (alumnos[i, j] >= 0)
+                    {
+                        valido = true;
+                    }
+                    else
+                    {
+                        Console.WriteLine("Ingrese un numero positivo");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Ingrese un numero valido");
+                }
             }
-        
+
+            valido = false;
+
+            while (valido == false)
+            {
+                Console.WriteLine("Tiene internet? (S/N)");
+                input = Console.ReadLine().ToUpper();
+
+                if (input == "S")
+                {
+                    ConInternet[i, j] = true;
+                    valido = true;
+                }
+                else if (input == "N")
+                {
+                    ConInternet[i, j] = false;
+                    valido = true;
+                }
+                else
+                {
+                    Console.WriteLine("Ingrese S o N");
+                }
+            }
+        }
     }
 }
+
+int totalInternet = 0;
+int suma = 0;
+int cantidad = 0;
+
+
+for (int f = 0; f < 2; f++)
+{
+    for (int c = 0; c < 3; c++)
+    {
+        if (ConInternet[f, c] == true)
+        {
+            totalInternet = totalInternet + 1;
+            suma = suma + alumnos[f, c];
+            cantidad = cantidad + 1;
+        }
+    }
+}
+
+Console.WriteLine("Laboratorios con internet: " + totalInternet);
+
+
+if (cantidad > 0)
+{
+    Console.WriteLine("Promedio: " + (suma / cantidad));
+}
+else
+{
+    Console.WriteLine("No hay laboratorios con internet");
+}
+
+
+Console.WriteLine("Laboratorios en alerta:");
+
+for (int f = 0; f < 2; f++)
+{
+    for (int c = 0; c < 3; c++)
+    {
+        if (alumnos[f, c] > 20 && ConInternet[f, c] == false)
+        {
+            Console.WriteLine("Lab [" + f + "," + c + "]");
+        }
+    }
+}
+
