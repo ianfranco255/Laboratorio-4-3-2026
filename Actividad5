@@ -1,1 +1,16 @@
-
+int [,,] naveX = new int[2, 3, 4];
+int [,,] naveZ = new int[2, 3, 4];
+bool flag = true;
+string opcion;
+bool conv;
+while (flag)
+{
+    Console.WriteLine("--MENU--");
+    Console.WriteLine("1. Fase de Carga");
+    Console.WriteLine("2. Modo Combate");
+    Console.WriteLine("3. Registrar Aulas");
+    Console.WriteLine("4. Salir");
+    Console.WriteLine("Ingrese una opcion(1-4): ");
+    opcion = Console.ReadLine();
+    conv = int.TryParse(opcion, out int numero);
+}
