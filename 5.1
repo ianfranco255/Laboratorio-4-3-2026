@@ -1,0 +1,45 @@
+﻿int alum = 0;
+int prof = 0;
+int aulas = 0;
+string opcion;
+bool conv;
+bool flag = true;
+while (flag)
+{
+    Console.WriteLine("--MENU--");
+    Console.WriteLine("1. Registrar Alumnos");
+    Console.WriteLine("2. Registrar Profesores");
+    Console.WriteLine("3. Registrar Aulas");
+    Console.WriteLine("4. Salir");
+    Console.WriteLine("Ingrese una opcion(1-4): ");
+    opcion = Console.ReadLine();
+    conv = int.TryParse(opcion, out int numero);
+    if (numero == 4)
+    {
+        flag=false;
+    }
+    if (numero == 1)
+    {
+        Console.WriteLine("Cuantos alumnos?");
+        opcion = Console.ReadLine();
+        conv = int.TryParse(opcion, out numero);
+        
+        Console.WriteLine($"Alumnos: {numero}");
+    }
+    if (numero == 2)
+    {
+        Console.WriteLine("Cuantos profesores?");
+        opcion = Console.ReadLine();
+        conv = int.TryParse(opcion, out numero);
+
+        Console.WriteLine($"Profesores: {numero}");
+    }
+    if (numero == 3)
+    {
+        Console.WriteLine("Cuantas Aulas?");
+        opcion = Console.ReadLine();
+        conv = int.TryParse(opcion, out numero);
+
+        Console.WriteLine($"Aulas: {numero}");
+    }
+}
