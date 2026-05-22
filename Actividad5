@@ -1,16 +1,75 @@
-int [,,] naveX = new int[2, 3, 4];
-int [,,] naveZ = new int[2, 3, 4];
+int[,,] naveX = new int[2, 3, 4];
+int[,,] naveZ = new int[2, 3, 4];
+int jugadoruno = 20;
+int jugadordos = 20;
 bool flag = true;
 string opcion;
+string input;
 bool conv;
+Console.ForegroundColor = ConsoleColor.Yellow;
 while (flag)
 {
     Console.WriteLine("--MENU--");
     Console.WriteLine("1. Fase de Carga");
     Console.WriteLine("2. Modo Combate");
-    Console.WriteLine("3. Registrar Aulas");
-    Console.WriteLine("4. Salir");
-    Console.WriteLine("Ingrese una opcion(1-4): ");
+    Console.WriteLine("3. Salir");
+    Console.WriteLine("Ingrese una opcion(1-3): ");
     opcion = Console.ReadLine();
     conv = int.TryParse(opcion, out int numero);
+    if (numero == 1)
+    {
+      for (int i = 0; i < 1; i++) 
+      {
+            for (int b = 0; b < 2; b++)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Jugador {numero++}");
+                Console.WriteLine("Tiene 20 tripulantes dentro de la nave, a que sector los enviara?");
+
+                for (int c = 0; c < 2; c++)
+                {
+                    Console.WriteLine($"Ala {c + 1}: ");
+                    Console.WriteLine("(1 = Izquierda, 2 = Derecha)");
+
+                    input = Console.ReadLine();
+                    conv = int.TryParse(input, out numero);
+
+                    while (conv == false || numero < 0)
+                    {
+                        Console.WriteLine("Intente Denuevo...");
+                        input = Console.ReadLine();
+                        conv = int.TryParse(input, out numero);
+                    }
+                }
+                for (int a = 0; a < 3; a++)
+                {
+                    Console.WriteLine($"Capsula {a + 1}: ");
+                    input = Console.ReadLine();
+                    conv = int.TryParse(input, out numero);
+
+                    while (conv == false || numero < 0)
+                    {
+                        Console.WriteLine("Intente Denuevo...");
+                        input = Console.ReadLine();
+                        conv = int.TryParse(input, out numero);
+                    }
+                }
+                for (int a = 0; a < 4; a++)
+                {
+                    Console.WriteLine($"Habitacion {a + 1}: ");
+                    input = Console.ReadLine();
+                    conv = int.TryParse(input, out numero);
+
+                    while (conv == false || numero < 0)
+                    {
+                        Console.WriteLine("Intente Denuevo...");
+                        input = Console.ReadLine();
+                        conv = int.TryParse(input, out numero);
+                    }
+                }
+            }
+      }
+
+    }
 }
+Console.BackgroundColor = ConsoleColor.White;
