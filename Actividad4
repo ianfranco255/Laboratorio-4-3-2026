@@ -26,8 +26,7 @@ while (flag)
         Console.ForegroundColor = ConsoleColor.Green;
         Console.WriteLine($"Tripulantes disponibles: {trip}");
         for (int i = 0; i < 1; i++)
-        {//me redimo
-
+        {
             for (int b = 0; b < 2; b++)
             {
                     Console.ForegroundColor = ConsoleColor.Blue;
@@ -35,7 +34,7 @@ while (flag)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
                 }
-                Console.WriteLine($"Jugador {b +1}");
+                Console.WriteLine($"Jugador 1");
                 Console.WriteLine("Tiene 20 tripulantes dentro de la nave, a que sector los enviara?");
 
                 for (int c = 0; c < 2; c++)
@@ -53,6 +52,11 @@ while (flag)
                         conv = int.TryParse(input, out numero);
                     }
                     Console.WriteLine($"Tripulantes disponibles: {trip -= numero}");
+                    if (trip - numero == 0) 
+                    {
+                        Console.WriteLine("Se han distribuido a todos los pasajeros.");
+                        break;
+                    }
                 }
                 for (int a = 0; a < 3; a++)
                 {
@@ -67,6 +71,11 @@ while (flag)
                         conv = int.TryParse(input, out numero);
                     }
                     Console.WriteLine($"Tripulantes disponibles: {trip -= numero}");
+                    if (trip - numero == 0)
+                    {
+                        Console.WriteLine("Se han distribuido a todos los pasajeros.");
+                        break;
+                    }
                 }
                 for (int a = 0; a < 4; a++)
                 {
@@ -81,6 +90,11 @@ while (flag)
                         conv = int.TryParse(input, out numero);
                     }
                     Console.WriteLine($"Tripulantes disponibles: {trip -= numero}");
+                    if (trip - numero == 0)
+                    {
+                        Console.WriteLine("Se han distribuido a todos los pasajeros.");
+                        break;
+                    }
                 }
             }
         }
