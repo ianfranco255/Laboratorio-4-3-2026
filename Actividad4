@@ -1,124 +1,89 @@
-int[,] alumnos = new int[2, 3];
-bool[,] ConInternet = new bool[2, 3];
+int[,,] naveX = new int[2, 3, 4];
+int[,,] naveZ = new int[2, 3, 4];
+bool flag = true;
+string opcion;
 string input;
-bool valido;
-
-Console.WriteLine("Desea ingresar manualmente los datos? (S/N)");
-input = Console.ReadLine();
-
-if (input == "N" || input == "n")
+int trip = 20;
+bool conv;
+Console.ForegroundColor = ConsoleColor.Yellow;
+while (flag)
 {
-    alumnos[0, 0] = 25;
-    alumnos[0, 1] = 19;
-    alumnos[0, 2] = 23;
-    alumnos[1, 0] = 13;
-    alumnos[1, 1] = 15;
-    alumnos[1, 2] = 17;
-
-    ConInternet[0, 0] = true;
-    ConInternet[0, 1] = false;
-    ConInternet[0, 2] = true;
-    ConInternet[1, 0] = false;
-    ConInternet[1, 1] = true;
-    ConInternet[1, 2] = false;
-}
-else
-{
-    for (int i = 0; i < 2; i++)
+    Console.WriteLine("--MENU--");
+    Console.WriteLine("1. Fase de Carga");
+    Console.WriteLine("2. Modo Combate");
+    Console.WriteLine("3. Salir");
+    Console.WriteLine("Ingrese una opcion(1-3): ");
+    opcion = Console.ReadLine();
+    conv = int.TryParse(opcion, out int numero);
+    while (conv == false || numero < 0)
     {
-        for (int j = 0; j < 3; j++)
-        {
-            valido = false;
+        Console.WriteLine("Intente Denuevo...");
+        opcion = Console.ReadLine();
+        conv = int.TryParse(opcion, out numero);
+    }
+    if (numero == 1)
+    {
+        Console.ForegroundColor = ConsoleColor.Green;
+        Console.WriteLine($"Tripulantes disponibles: {trip}");
+        for (int i = 0; i < 1; i++)
+        {//me redimo
 
-            while (valido == false)
+            for (int b = 0; b < 2; b++)
             {
-                Console.WriteLine("Ingrese la cantidad de alumnos del piso " + i + ", laboratorio " + j);
-                input = Console.ReadLine();
-
-                if (int.TryParse(input, out alumnos[i, j]))
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                if (b > 0)
                 {
-                    if (alumnos[i, j] >= 0)
-                    {
-                        valido = true;
-                    }
-                    else
-                    {
-                        Console.WriteLine("Ingrese un numero positivo");
-                    }
+                    Console.ForegroundColor = ConsoleColor.Red;
                 }
-                else
+                Console.WriteLine($"Jugador {b +1}");
+                Console.WriteLine("Tiene 20 tripulantes dentro de la nave, a que sector los enviara?");
+
+                for (int c = 0; c < 2; c++)
                 {
-                    Console.WriteLine("Ingrese un numero valido");
+                    Console.WriteLine($"Ala {c + 1}: ");
+                    Console.WriteLine("(1 = Izquierda, 2 = Derecha)");
+
+                    input = Console.ReadLine();
+                    conv = int.TryParse(input, out numero);
+                   
+                    while (conv == false || numero < 0)
+                    {
+                        Console.WriteLine("Intente Denuevo...");
+                        input = Console.ReadLine();
+                        conv = int.TryParse(input, out numero);
+                    }
+                    Console.WriteLine($"Tripulantes disponibles: {trip -= numero}");
+                }
+                for (int a = 0; a < 3; a++)
+                {
+                    Console.WriteLine($"Capsula {a + 1}: ");
+                    input = Console.ReadLine();
+                    conv = int.TryParse(input, out numero);
+
+                    while (conv == false || numero < 0)
+                    {
+                        Console.WriteLine("Intente Denuevo...");
+                        input = Console.ReadLine();
+                        conv = int.TryParse(input, out numero);
+                    }
+                    Console.WriteLine($"Tripulantes disponibles: {trip -= numero}");
+                }
+                for (int a = 0; a < 4; a++)
+                {
+                    Console.WriteLine($"Habitacion {a + 1}: ");
+                    input = Console.ReadLine();
+                    conv = int.TryParse(input, out numero);
+
+                    while (conv == false || numero < 0)
+                    {
+                        Console.WriteLine("Intente Denuevo...");
+                        input = Console.ReadLine();
+                        conv = int.TryParse(input, out numero);
+                    }
+                    Console.WriteLine($"Tripulantes disponibles: {trip -= numero}");
                 }
             }
-
-            valido = false;
-
-            while (valido == false)
-            {
-                Console.WriteLine("Tiene internet? (S/N)");
-                input = Console.ReadLine().ToUpper();
-
-                if (input == "S")
-                {
-                    ConInternet[i, j] = true;
-                    valido = true;
-                }
-                else if (input == "N")
-                {
-                    ConInternet[i, j] = false;
-                    valido = true;
-                }
-                else
-                {
-                    Console.WriteLine("Ingrese S o N");
-                }
-            }
         }
+
     }
 }
-
-int totalInternet = 0;
-int suma = 0;
-int cantidad = 0;
-
-
-for (int f = 0; f < 2; f++)
-{
-    for (int c = 0; c < 3; c++)
-    {
-        if (ConInternet[f, c] == true)
-        {
-            totalInternet = totalInternet + 1;
-            suma = suma + alumnos[f, c];
-            cantidad = cantidad + 1;
-        }
-    }
-}
-
-Console.WriteLine("Laboratorios con internet: " + totalInternet);
-
-
-if (cantidad > 0)
-{
-    Console.WriteLine("Promedio: " + (suma / cantidad));
-}
-else
-{
-    Console.WriteLine("No hay laboratorios con internet");
-}
-
-
-Console.WriteLine("Laboratorios en alerta:");
-
-for (int f = 0; f < 2; f++)
-{
-    for (int c = 0; c < 3; c++)
-    {
-        if (alumnos[f, c] > 20 && ConInternet[f, c] == false)
-        {
-            Console.WriteLine("Lab [" + f + "," + c + "]");
-        }
-    }
-}
-
