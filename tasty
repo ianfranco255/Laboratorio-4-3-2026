@@ -1,20 +1,12 @@
-int[] nums = new int [2]; //primero, hagamos que sea de una sola dimension (una lista)
+int[] nums = new int[2];
 int target = 4;
-int suma=0;
-    for (int i = 0; i <= nums.Length-1; i++) //aca con "nums.length" (longitud de nums) me aseguro que el for dure lo que sea de largo el array (o sea que así recorre el array)
+int suma = 0;
+for (int i = 0; i < nums.Length -1; i++)
+{   
+    for (int j = 0; j < nums.Length - 1; i++)
     {
-    /*suma += i;*/      //ojo que aca estan sumando i, que es un numero fuera del array, es trampa.
-    // no me acuerdo como sumar arrays
-    //segundo, lo implmentamos al for, voy a anular comentando el codigo de suma 
-
-        for(int j = 0; j <= nums.Length-1; i++) //(lo mismo)
-       {
-            suma = nums[i] + nums[j]; //capische?||graciasprofe|| oui oui >:V)
-        Console.WriteLine("Factores: " + nums[j] +  ", "+ nums[i] + "      Suma: " + suma);
-        }
-
-        /*suma = nums[i] + nums[i]; */           //aca tendríamos 2 de los cuatro casos || a+a y b+b? || tal cual. || aa || 
-    // la idea es por cada elemento del array recorrer el resto del array, es un array dentro de otro, porque lo recorres dos veces, vamos a implmentarlo
-    
-    Console.ReadKey();
+        suma = nums[i] + nums[i];   
+        Console.WriteLine("Factores: " + nums[i] + ", " + nums[j] + "      Suma: " + suma);
     }
+    Console.ReadKey();
+}
